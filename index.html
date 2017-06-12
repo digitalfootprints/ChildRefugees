@@ -1,21 +1,195 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8">
-<title>MAP673 AlphaMap</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <script src="https://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <style>
+        html,
+        body,
+        #map {
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            background: #051734;
+        }
 
-<style>
+        h1 {
+            position: absolute;
+            z-index: 650;
+            top: 20px;
+            left: 60px;
+            padding: 8px 15px;
+            margin: 0;
+            color: #eaecde;
+            font-size: 2em;
+            background-color: #05173495;
+            border-radius: 5px;
+            border-bottom: 1px solid #eaecde;
+            box-shadow: -5px 5px 5px black;
+        }
 
-/* CSS style rules go here! */   
+        h2 {
+            position: absolute;
+            z-index: 650;
+            top: 80px;
+            left: 60px;
+            padding: 4px 15px;
+            margin: 0;
+            color: #eaecde;
+            font-size: 1.5em;
+            background-color: #05173495;
+            border-radius: 5px;
+            box-shadow: -5px 5px 5px black;
+        }
 
-</style>
+        h3 {
+            position: absolute;
+            z-index: 650;
+            top: 130px;
+            left: 60px;
+            padding: 4px 15px;
+            margin: 0;
+            color: #eaecde;
+            font-size: 1.0em;
+            background-color: #05173495;
+            border-radius: 5px;
+            box-shadow: -5px 5px 5px black;
+        }
+
+        #selector {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 0;
+            background-color: #05173495;
+            box-shadow: 5px 5px 5px black;
+        }
+
+        #selector ul {
+            padding: 0;
+            margin: 0;
+            list-style-type: none;
+        }
+
+        #selector li {
+            border-bottom: 1px solid #eaecde;
+            padding: 8px 15px;
+            font-size: 13px;
+            color: #eaecde;
+            cursor: auto;
+        }
+
+        #selector li:hover {
+            background-color: #dedeec;
+            cursor: pointer;
+        }
+
+        #selector li.selected {
+            background-color: #05173495;
+        }
+    </style>
 </head>
 
 <body>
+    <h1>A World View of Child Refugees in 2015</h1>
+    <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
+    <h3>According to information from the United Nations High Commission on Refugees,<br>
+        2015 saw the increasing trend of forced displacement continue, resulting in record<br>
+        high numbers of people escaping persecution, conflict, violence, and human rights<br>
+        violations.
+        <a href="http://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
+        and <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a><br>
+        Map by<a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a></h3>
+    <div id="map"></div>
 
-    <p>Hello World! I'm going to be a map of child refugees and migrantions that occured in 2015.</p>
+    <div id="selector" class="cartodb-infobox">
+        <ul>
+            <li id="add">Add Legend</li>
+            <li id="remove">Remove Legend</li>
+        </ul>
+    </div>
 
+    <!-- <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
+      <div class="CDB-infowindow-close js-close"></div>
+      <div class="CDB-infowindow-container">
+        <div class="CDB-infowindow-bg">
+          <div class="CDB-infowindow-inner">
+            <ul class="CDB-infowindow-list js-content">
+              <li class="CDB-infowindow-listItem">
+                  <h5 class="CDB-infowindow-subtitle">Country:  </h5>
+                <h4 class="CDB-infowindow-title">{{countries_and_areas}}</h4>
+              </li>
+              <li class="CDB-infowindow-listItem">
+                  <h5 class="CDB-infowindow-subtitle">% of Refugees Under 18 by Country of Asylum::  </h5>
+                <h4 class="CDB-infowindow-title">{{under18}}</h4>
+              </li>
+              <li class="CDB-infowindow-listItem">
+                  <h5 class="CDB-infowindow-subtitle">% of Refugees Under 18 by Country of Origin: </h5>
+                <h4 class="CDB-infowindow-title">{{refugeesbycountryoforigin_shareofunder18intotalrefugees}}</h4>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="CDB-hook">
+          <div class="CDB-hook-inner"></div>
+        </div>
+      </div>
+    </div> -->
+
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <script type="cartocss/html" id="child-styles">
+
+        #layer { polygon-fill: ramp([under18], (#188f4b, #89c45a, #d9ef8b, #ffffbf, #fee08b, #fc8d59, #d73027), quantiles); line-width: 1; line-color: #FFF; line-opacity: 0.5; }
+    </script>
+
+    <script>
+        var map = L.map('map', {
+            center: [30, -20],
+            zoom: 2,
+            zoomSnap: .1
+        });
+
+        var sourceObject = {
+            user_name: 'digitalfootprintz',
+            type: 'cartodb',
+            sublayers: [
+                {
+                    sql: "SELECT * FROM child_migrants",
+                    cartocss: $("#child-styles").text()
+                }
+            ]
+        }
+
+        cartodb.createLayer(map, sourceObject).addTo(map);
+
+        function main() {
+            mapUrl = 'https://nmp.carto.com/u/digitalfootprintz/builder/2b1d14ea-a0aa-40ec-9614-2e51807e97b4/viz.json'
+            cartodb.createVis('map', mapUrl)
+                .on('done', function(vis, layers) {
+                    console.log(vis);
+                    console.log(layers);
+
+                }).on('error', function() {
+                    console.log("some error occurred");
+                });
+
+            $('#add').click(function() {
+                $('body').append(
+                    '<div class="cartodb-legend choropleth"> <div class="legend-title">% Under 18</div> <ul style="width: 120px; height: auto"> <li class="min"> 0 </li> <li class="max"> 66 percent </li> <li class="graph count_441"> <div class="colors"> <div class="quartile" style="background-color:#188f4b"></div> <div class="quartile" style="background-color:#89c45a"></div> <div class="quartile" style="background-color:#d9ef8b"></div> <div class="quartile" style="background-color:#ffffbf"></div> <div class="quartile" style="background-color:#fee08b"></div> <div class="quartile" style="background-color:#fc8d59"></div> <div class="quartile" style="background-color:#d73027"></div> </div> </li> </ul> </div>'
+                );
+            });
+
+            $('#remove').click(function() {
+                $('div.cartodb-legend.choropleth').remove();
+            });
+        }
+
+        window.onload = main;
+    </script>
 </body>
+
 </html>
