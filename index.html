@@ -5,8 +5,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-    <script src="https://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <style>
         html,
         body,
@@ -140,42 +140,50 @@
       </div>
     </div> -->
 
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
     <script type="cartocss/html" id="child-styles">
-
-        #layer { polygon-fill: ramp([under18], (#188f4b, #89c45a, #d9ef8b, #ffffbf, #fee08b, #fc8d59, #d73027), quantiles); line-width: 1; line-color: #FFF; line-opacity: 0.5; }
+        #layer {
+            polygon-fill: ramp([under18], cartocolor(RedOr), jenks(7));
+            polygon-opacity: 1;
+            line-width: 1;
+            line-color: #FFF;
+            line-opacity: 0.5;
+        }
     </script>
 
     <script>
-        var map = L.map('map', {
-            center: [30, -20],
-            zoom: 2,
-            zoomSnap: .1
-        });
-
-        var sourceObject = {
-            user_name: 'digitalfootprintz',
-            type: 'cartodb',
-            sublayers: [
-                {
-                    sql: "SELECT * FROM child_migrants",
-                    cartocss: $("#child-styles").text()
-                }
-            ]
-        }
-
-        cartodb.createLayer(map, sourceObject).addTo(map);
 
         function main() {
-            mapUrl = 'https://nmp.carto.com/u/digitalfootprintz/builder/2b1d14ea-a0aa-40ec-9614-2e51807e97b4/viz.json'
-            cartodb.createVis('map', mapUrl)
-                .on('done', function(vis, layers) {
-                    console.log(vis);
-                    console.log(layers);
 
-                }).on('error', function() {
-                    console.log("some error occurred");
-                });
+            var map = L.map('map', {
+                center: [30, -20],
+                zoom: 2,
+                zoomSnap: .1
+            });
+
+            var sourceObject = {
+                user_name: 'digitalfootprintz',
+                type: 'cartodb',
+                sublayers: [
+                    {
+                        sql: "SELECT * FROM child_migrants",
+                        cartocss: $("#child-styles").text()
+                    }
+                ]
+            }
+
+            cartodb.createLayer(map, sourceObject).addTo(map);
+
+
+            // var mapUrl = 'https://nmp.carto.com/u/digitalfootprintz/builder/2b1d14ea-a0aa-40ec-9614-2e51807e97b4/viz.json'
+            //
+            // cartodb.createVis('map', mapUrl)
+            //     .on('done', function(vis, layers) {
+            //         console.log(vis);
+            //         console.log(layers);
+            //
+            //     }).on('error', function() {
+            //         console.log("some error occurred");
+            //     });
 
             $('#add').click(function() {
                 $('body').append(
