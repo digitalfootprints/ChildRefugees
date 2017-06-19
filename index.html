@@ -2,11 +2,12 @@
 <html>
 
 <head>
+    <title>673 Alpha Map</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
-    <link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
-    <script src="https://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+    <link rel="stylesheet" href="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+    <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
     <style>
         html,
         body,
@@ -68,7 +69,6 @@
             background-color: #05173495;
             box-shadow: 5px 5px 5px black;
         }
-
         #selector ul {
             padding: 0;
             margin: 0;
@@ -113,7 +113,8 @@
         </ul>
     </div>
 
-    <!-- <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
+
+    <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
       <div class="CDB-infowindow-close js-close"></div>
       <div class="CDB-infowindow-container">
         <div class="CDB-infowindow-bg">
@@ -138,53 +139,57 @@
           <div class="CDB-hook-inner"></div>
         </div>
       </div>
-    </div> -->
+    </div>
 
-    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
     <script type="cartocss/html" id="child-styles">
 
-        #layer { polygon-fill: ramp([under18], (#188f4b, #89c45a, #d9ef8b, #ffffbf, #fee08b, #fc8d59, #d73027), quantiles); line-width: 1; line-color: #FFF; line-opacity: 0.5; }
+   #layer {
+           polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7));
+           polygon-opacity: 1;
+           line-width: 1;
+           line-color: #FFF;
+           line-opacity: 0.5;
+        }
+
     </script>
 
     <script>
-        var map = L.map('map', {
-            center: [30, -20],
-            zoom: 2,
-            zoomSnap: .1
-        });
-
-        var sourceObject = {
-            user_name: 'digitalfootprintz',
-            type: 'cartodb',
-            sublayers: [
-                {
-                    sql: "SELECT * FROM child_migrants",
-                    cartocss: $("#child-styles").text()
-                }
-            ]
-        }
-
-        cartodb.createLayer(map, sourceObject).addTo(map);
 
         function main() {
-            mapUrl = 'https://nmp.carto.com/u/digitalfootprintz/builder/2b1d14ea-a0aa-40ec-9614-2e51807e97b4/viz.json'
-            cartodb.createVis('map', mapUrl)
-                .on('done', function(vis, layers) {
-                    console.log(vis);
-                    console.log(layers);
 
-                }).on('error', function() {
-                    console.log("some error occurred");
-                });
+            var map = L.map('map', {
+                center: [30, -20],
+                zoom: 2,
+                zoomSnap: .1
+            });
+
+            var sourceObject = {
+                user_name: 'digitalfootprintz',
+                type: 'cartodb',
+                sublayers: [
+                    {
+                        sql: "SELECT * FROM child_migrants",
+                        cartocss: $("#child-styles").text()
+                    }
+                ]
+            }
+
+            cartodb.createLayer(map, sourceObject).addTo(map);
 
             $('#add').click(function() {
                 $('body').append(
-                    '<div class="cartodb-legend choropleth"> <div class="legend-title">% Under 18</div> <ul style="width: 120px; height: auto"> <li class="min"> 0 </li> <li class="max"> 66 percent </li> <li class="graph count_441"> <div class="colors"> <div class="quartile" style="background-color:#188f4b"></div> <div class="quartile" style="background-color:#89c45a"></div> <div class="quartile" style="background-color:#d9ef8b"></div> <div class="quartile" style="background-color:#ffffbf"></div> <div class="quartile" style="background-color:#fee08b"></div> <div class="quartile" style="background-color:#fc8d59"></div> <div class="quartile" style="background-color:#d73027"></div> </div> </li> </ul> </div>'
+                    '<div class="cartodb-legend choropleth"> <div class="legend-title">% Under 18</div> <ul style="width: 120px; height: auto"> <li class="min"> 0 </li> <li class="max"> 66 percent </li> <li class="graph count_441"> <div class="colors"> <div class="quartile" style="background-color:#ffffcc"></div> <div class="quartile" style="background-color:#c7e9b4"></div> <div class="quartile" style="background-color:#7fcdbb"></div> <div class="quartile" style="background-color:#41b6c4"></div> <div class="quartile" style="background-color:#1d91c0"></div> <div class="quartile" style="background-color:#225ea8"></div> <div class="quartile" style="background-color:#0c2c84"></div> </div> </li> </ul> </div>'
                 );
             });
 
             $('#remove').click(function() {
                 $('div.cartodb-legend.choropleth').remove();
+            });
+
+            $('#add').click(function() {
+                $('body').append(
+                    '<div class="CDB-infowindow">'
+                );
             });
         }
 
