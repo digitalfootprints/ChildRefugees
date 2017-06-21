@@ -17,7 +17,8 @@
             margin: 0;
             background: #051734;
         }
-        #meta {
+
+        h1 {
             position: absolute;
             z-index: 650;
             top: 20px;
@@ -25,32 +26,47 @@
             padding: 8px 15px;
             margin: 0;
             color: #eaecde;
-            background-color: #051734;
-            max-width: 560px;
+            font-size: 2em;
+            background-color: #05173495;
             border-radius: 5px;
             border-bottom: 1px solid #eaecde;
             box-shadow: -5px 5px 5px black;
         }
-        h1 {
-            font-size: 1.5em;
-        }
 
         h2 {
-            font-size: 1.2em;
+            position: absolute;
+            z-index: 650;
+            top: 80px;
+            left: 60px;
+            padding: 4px 15px;
+            margin: 0;
+            color: #eaecde;
+            font-size: 1.5em;
+            background-color: #05173495;
+            border-radius: 5px;
+            box-shadow: -5px 5px 5px black;
         }
 
-        p {
+        h3 {
+            position: absolute;
+            z-index: 650;
+            top: 130px;
+            left: 60px;
+            padding: 4px 15px;
+            margin: 0;
             color: #eaecde;
             font-size: 1.0em;
+            background-color: #05173495;
+            border-radius: 5px;
+            box-shadow: -5px 5px 5px black;
         }
-        ul li a {
-            color: #eaecde;
-        }
+
         #selector {
             position: absolute;
             top: 20px;
             right: 20px;
             padding: 0;
+            background-color: #05173495;
             box-shadow: 5px 5px 5px black;
         }
         #selector ul {
@@ -79,26 +95,15 @@
 </head>
 
 <body>
-    <div id="meta">
-        <h1>A World View of Child Refugees in 2015</h1>
-        <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
-        <p>According to information from the United Nations High Commission on Refugees,
-            2015 saw the increasing trend of forced displacement continue, resulting in record
-            high numbers of people escaping persecution, conflict, violence, and human rights
-            violations.</p>
-        <ul>
-            <li>
-                <a href="https://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
-            </li>
-            <li>
-                <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a>
-            </li>
-            <li>
-                <a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a>
-            </li>
-        </ul>
-    </div>
-
+    <h1>A World View of Child Refugees in 2015</h1>
+    <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
+    <h3>According to information from the United Nations High Commission on Refugees,<br>
+        2015 saw the increasing trend of forced displacement continue, resulting in record<br>
+        high numbers of people escaping persecution, conflict, violence, and human rights<br>
+        violations.
+        <a href="http://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
+        and <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a><br>
+        Map by<a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a></h3>
     <div id="map"></div>
 
     <div id="selector" class="cartodb-infobox">
@@ -109,7 +114,7 @@
     </div>
 
 
-    <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
+    <!-- <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
       <div class="CDB-infowindow-close js-close"></div>
       <div class="CDB-infowindow-container">
         <div class="CDB-infowindow-bg">
@@ -134,7 +139,7 @@
           <div class="CDB-hook-inner"></div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <script type="cartocss/html" id="child-styles">
 
