@@ -101,7 +101,7 @@
         2015 saw the increasing trend of forced displacement continue, resulting in record<br>
         high numbers of people escaping persecution, conflict, violence, and human rights<br>
         violations.
-        <a href="http://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
+        <a href="https://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
         and <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a><br>
         Map by<a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a></h3>
     <div id="map"></div>
@@ -192,6 +192,10 @@
                 );
             });
         }
+
+        $.getJSON('https://digitalfootprintz.carto.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM child_migrants', function(data) {
+                L.geoJson(data).addTo(map);
+        });
 
         window.onload = main;
     </script>
