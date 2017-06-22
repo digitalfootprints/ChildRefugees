@@ -194,9 +194,9 @@
             });
         }
 
-//         $.getJSON('https://digitalfootprintz.carto.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM child_migrants', function(data) {
-//                 L.geoJson(data).addTo(map);
-//         });
+        $.getJSON('https://digitalfootprintz.carto.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM child_migrants', function(data) {
+                L.geoJson(data).addTo(map);
+        });
 
         window.onload = main;
     </script>
