@@ -175,7 +175,9 @@
                 ]
             }
 
-            cartodb.createLayer(map, sourceObject).addTo(map);
+            cartodb.createLayer(map, sourceObject, {
+                https: true
+            }).addTo(map);
 
             $('#add').click(function() {
                 $('body').append(
