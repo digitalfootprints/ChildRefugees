@@ -27,7 +27,7 @@
             margin: 0;
             color: #eaecde;
             background-color: #05173495;
-            max-width: 570px;
+            max-width: 565px;
             border-radius: 5px;
             border-bottom: 1px solid #eaecde;
             box-shadow: -5px 5px 5px black
@@ -88,7 +88,7 @@
     <div id="meta">
         <h1>A World View of Child Refugees in 2015</h1>
         <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
-        <p>According to information from the United Nations High Commission on Refugees, 2015 saw the increasing trend of forced displacement continue, resulting in record high numbers of people escaping persecution, conflict, violence, and human rights
+        <p>According to information from the United Nations High Commission on Refugees, 2015 saw the increasing trend of forced displacement continue, resulting in record high numbers of people escaping persecution, conflict, violence & human rights
             violations.
         </p>
         <ul>
@@ -143,7 +143,21 @@
 
     <script type="cartocss/html" id="child-styles">
 
-        #layer { polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7)); polygon-opacity: 1; line-width: 1; line-color: #FFF; line-opacity: 0.5; }
+        #layer { polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7)); polygon-opacity: 1; line-width: 1; line-color: #ebebeb; line-opacity: 0.5; }
+
+        #layer::labels {
+  text-name: [iso_code];
+  text-face-name: 'DejaVu Sans Book';
+  text-size: 10;
+  text-fill: #051734;
+  text-label-position-tolerance: 0;
+  text-halo-radius: 1.6;
+  text-halo-fill: #eaecde;
+  text-dy: 0;
+  text-allow-overlap: false;
+  text-placement: point;
+  text-placement-type: dummy;
+}
 
     </script>
 
@@ -153,7 +167,7 @@
             var map = L.map('map', {
                 center: [30, -20],
                 zoom: 2,
-                zoomSnap: .1
+                zoomSnap: 0.1
             });
 
             var sourceObject = {
@@ -171,7 +185,7 @@
 
             $('#add').click(function() {
                 $('body').append(
-                    '<div class="cartodb-legend choropleth"> <div class="legend-title">% Under 18</div> <ul style="width: 120px; height: auto"> <li class="min"> 0 </li> <li class="max"> 66 percent </li> <li class="graph count_441"> <div class="colors"> <div class="quartile" style="background-color:#ffffcc"></div> <div class="quartile" style="background-color:#c7e9b4"></div> <div class="quartile" style="background-color:#7fcdbb"></div> <div class="quartile" style="background-color:#41b6c4"></div> <div class="quartile" style="background-color:#1d91c0"></div> <div class="quartile" style="background-color:#225ea8"></div> <div class="quartile" style="background-color:#0c2c84"></div> </div> </li> </ul> </div>'
+                    '<div class="cartodb-legend choropleth"> <div class="legend-title">Percent Under 18</div> <ul style="width: 120px; height: auto"> <li class="min"> 0 percent </li> <li class="max"> 66 percent </li> <li class="graph count_441"> <div class="colors"> <div class="quartile" style="background-color:#ffffcc"></div> <div class="quartile" style="background-color:#c7e9b4"></div> <div class="quartile" style="background-color:#7fcdbb"></div> <div class="quartile" style="background-color:#41b6c4"></div> <div class="quartile" style="background-color:#1d91c0"></div> <div class="quartile" style="background-color:#225ea8"></div> <div class="quartile" style="background-color:#0c2c84"></div> </div> </li> </ul> </div>'
                 );
             });
 
