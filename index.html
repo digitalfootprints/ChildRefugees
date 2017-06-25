@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>map673 Beta Map</title>
+    <title>Child Refugees 2015</title>
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
 
@@ -18,7 +18,7 @@
             background: #051734;
         }
 
-        h1 {
+        #meta {
             position: absolute;
             z-index: 650;
             top: 20px;
@@ -26,39 +26,28 @@
             padding: 8px 15px;
             margin: 0;
             color: #eaecde;
-            font-size: 2em;
             background-color: #05173495;
+            max-width: 570px;
             border-radius: 5px;
             border-bottom: 1px solid #eaecde;
-            box-shadow: -5px 5px 5px black;
+            box-shadow: -5px 5px 5px black
+        }
+
+        h1 {
+            font-size: 1.5em;
         }
 
         h2 {
-            position: absolute;
-            z-index: 650;
-            top: 80px;
-            left: 60px;
-            padding: 4px 15px;
-            margin: 0;
-            color: #eaecde;
-            font-size: 1.5em;
-            background-color: #05173495;
-            border-radius: 5px;
-            box-shadow: -5px 5px 5px black;
+            font-size: 1.2em;
         }
 
-        h3 {
-            position: absolute;
-            z-index: 650;
-            top: 130px;
-            left: 60px;
-            padding: 4px 15px;
-            margin: 0;
+        p {
             color: #eaecde;
             font-size: 1.0em;
-            background-color: #05173495;
-            border-radius: 5px;
-            box-shadow: -5px 5px 5px black;
+        }
+
+        ul li a {
+            color: #eaecde;
         }
 
         #selector {
@@ -69,6 +58,7 @@
             background-color: #05173495;
             box-shadow: 5px 5px 5px black;
         }
+
         #selector ul {
             padding: 0;
             margin: 0;
@@ -95,15 +85,25 @@
 </head>
 
 <body>
-    <h1>A World View of Child Refugees in 2015</h1>
-    <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
-    <h3>According to information from the United Nations High Commission on Refugees,<br>
-        2015 saw the increasing trend of forced displacement continue, resulting in record<br>
-        high numbers of people escaping persecution, conflict, violence, and human rights<br>
-        violations.
-        <a href="https://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission of Refugees</a>
-        and <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a><br>
-        Map by<a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a></h3>
+    <div id="meta">
+        <h1>A World View of Child Refugees in 2015</h1>
+        <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
+        <p>According to information from the United Nations High Commission on Refugees, 2015 saw the increasing trend of forced displacement continue, resulting in record high numbers of people escaping persecution, conflict, violence, and human rights
+            violations.
+        </p>
+        <ul>
+            <li>
+                <a href="https://www.unhcr.org/statistics/unhcrstats/576408cd7/unhcr-global-trends-2015.html" target="UNHCR"> United Nations High Commission on Refugees</a>
+            </li>
+            <li>
+                <a href="https://data.unicef.org/topic/child-migration-and-displacement/migration/" target="UNICEF"> UNICEF</a>
+            </li>
+            <li>
+                <a href="https://github.com/digitalfootprints/digitalfootprints.github.io" target="digitalfootprints"> digitalfootprints</a>
+            </li>
+        </ul>
+    </div>
+
     <div id="map"></div>
 
     <div id="selector" class="cartodb-infobox">
@@ -143,18 +143,11 @@
 
     <script type="cartocss/html" id="child-styles">
 
-   #layer {
-           polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7));
-           polygon-opacity: 1;
-           line-width: 1;
-           line-color: #FFF;
-           line-opacity: 0.5;
-        }
+        #layer { polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7)); polygon-opacity: 1; line-width: 1; line-color: #FFF; line-opacity: 0.5; }
 
     </script>
 
     <script>
-
         function main() {
 
             var map = L.map('map', {
@@ -166,13 +159,10 @@
             var sourceObject = {
                 user_name: 'digitalfootprintz',
                 type: 'cartodb',
-                https: true,
-                sublayers: [
-                    {
-                        sql: "SELECT * FROM child_migrants",
-                        cartocss: $("#child-styles").text()
-                    }
-                ]
+                sublayers: [{
+                    sql: "SELECT * FROM child_migrants",
+                    cartocss: $("#child-styles").text()
+                }]
             }
 
             cartodb.createLayer(map, sourceObject, {
@@ -197,7 +187,7 @@
         }
 
         $.getJSON('https://digitalfootprintz.carto.com/api/v2/sql?format=GeoJSON&q=SELECT * FROM child_migrants', function(data) {
-                L.geoJson(data).addTo(map);
+            L.geoJson(data).addTo(map);
         });
 
         window.onload = main;
