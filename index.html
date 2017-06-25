@@ -30,7 +30,8 @@
             max-width: 565px;
             border-radius: 5px;
             border-bottom: 1px solid #eaecde;
-            box-shadow: -5px 5px 5px black
+            border-left: 1px solid #eaecde;
+            box-shadow: -10px 10px 10px black
         }
 
         h1 {
@@ -56,17 +57,25 @@
             right: 20px;
             padding: 0;
             background-color: #05173495;
-            box-shadow: 5px 5px 5px black;
+            border-radius: 5px;
+            /*border-bottom: 1px solid #eaecde;*/
+            border-left-style: none;
+            border-right: 1px solid #eaecde;
+            border-top-style: none;
+            box-shadow: 10px 10px 10px black;
         }
 
         #selector ul {
             padding: 0;
             margin: 0;
             list-style-type: none;
+            border-radius: 5px;
+            border-bottom: 1px solid #eaecde;
+            border-right: 1px solid #eaecde;
         }
 
         #selector li {
-            border-bottom: 1px solid #eaecde;
+            /*border-bottom: 1px solid #eaecde;*/
             padding: 8px 15px;
             font-size: 13px;
             color: #eaecde;
@@ -74,7 +83,7 @@
         }
 
         #selector li:hover {
-            background-color: #dedeec;
+            background-color: #eaecde50;
             cursor: pointer;
         }
 
@@ -114,32 +123,22 @@
     </div>
 
 
-    <!-- <div class="CDB-infowindow CDB-infowindow--dark js-infowindow" style="background:#2E3C43">
-      <div class="CDB-infowindow-close js-close"></div>
-      <div class="CDB-infowindow-container">
-        <div class="CDB-infowindow-bg">
-          <div class="CDB-infowindow-inner">
-            <ul class="CDB-infowindow-list js-content">
-              <li class="CDB-infowindow-listItem">
-                  <h5 class="CDB-infowindow-subtitle">Country:  </h5>
-                <h4 class="CDB-infowindow-title">{{countries_and_areas}}</h4>
-              </li>
-              <li class="CDB-infowindow-listItem">
-                  <h5 class="CDB-infowindow-subtitle">% of Refugees Under 18 by Country of Asylum::  </h5>
-                <h4 class="CDB-infowindow-title">{{under18}}</h4>
-              </li>
-              <li class="CDB-infowindow-listItem">
-                  <h5 class="CDB-infowindow-subtitle">% of Refugees Under 18 by Country of Origin: </h5>
-                <h4 class="CDB-infowindow-title">{{refugeesbycountryoforigin_shareofunder18intotalrefugees}}</h4>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="CDB-hook">
-          <div class="CDB-hook-inner"></div>
-        </div>
-      </div>
-    </div> -->
+    <div class="CDB-Tooltip CDB-Tooltip--isDark">
+  <ul class="CDB-Tooltip-list">
+      <li class="CDB-Tooltip-listItem">
+          <h3 class="CDB-Tooltip-listTitle">countries_and_areas</h3>
+        <h4 class="CDB-Tooltip-listText">{{countries_and_areas}}</h4>
+      </li>
+      <li class="CDB-Tooltip-listItem">
+          <h3 class="CDB-Tooltip-listTitle">under18</h3>
+        <h4 class="CDB-Tooltip-listText">{{under18}}</h4>
+      </li>
+      <li class="CDB-Tooltip-listItem">
+          <h3 class="CDB-Tooltip-listTitle">refugeesbycountryoforigin_shareofunder18intotalrefugees</h3>
+        <h4 class="CDB-Tooltip-listText">{{refugeesbycountryoforigin_shareofunder18intotalrefugees}}</h4>
+      </li>
+  </ul>
+</div>
 
     <script type="cartocss/html" id="child-styles">
 
@@ -195,7 +194,7 @@
 
             $('#add').click(function() {
                 $('body').append(
-                    '<div class="CDB-infowindow">'
+                    '<div class="CDB-Tooltip">'
                 );
             });
         }
