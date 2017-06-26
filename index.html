@@ -97,8 +97,7 @@
     <div id="meta">
         <h1>A World View of Child Refugees in 2015</h1>
         <h2>Percentage of Refugees Under 18 By Country of Asylum</h2>
-        <p>According to information from the United Nations High Commission on Refugees, 2015 saw the increasing trend of forced displacement continue, resulting in record high numbers of people escaping persecution, conflict, violence & human rights
-            violations.
+        <p>According to information from the United Nations High Commission on Refugees, 2015 saw the increasing trend of forced displacement continue, resulting in record high numbers of people escaping persecution, conflict, violence & human rights violations.
         </p>
         <ul>
             <li>
@@ -123,40 +122,27 @@
     </div>
 
 
-    <div class="CDB-Tooltip CDB-Tooltip--isDark">
-  <ul class="CDB-Tooltip-list">
-      <li class="CDB-Tooltip-listItem">
-          <h3 class="CDB-Tooltip-listTitle">countries_and_areas</h3>
-        <h4 class="CDB-Tooltip-listText">{{countries_and_areas}}</h4>
-      </li>
-      <li class="CDB-Tooltip-listItem">
-          <h3 class="CDB-Tooltip-listTitle">under18</h3>
-        <h4 class="CDB-Tooltip-listText">{{under18}}</h4>
-      </li>
-      <li class="CDB-Tooltip-listItem">
-          <h3 class="CDB-Tooltip-listTitle">refugeesbycountryoforigin_shareofunder18intotalrefugees</h3>
-        <h4 class="CDB-Tooltip-listText">{{refugeesbycountryoforigin_shareofunder18intotalrefugees}}</h4>
-      </li>
-  </ul>
-</div>
+    <!-- <div class="CDB-Tooltip CDB-Tooltip--isDark">
+        <ul class="CDB-Tooltip-list">
+            <li class="CDB-Tooltip-listItem">
+                <h3 class="CDB-Tooltip-listTitle">countries_and_areas</h3>
+                <h4 class="CDB-Tooltip-listText">{{countries_and_areas}}</h4>
+            </li>
+            <li class="CDB-Tooltip-listItem">
+                <h3 class="CDB-Tooltip-listTitle">under18</h3>
+                <h4 class="CDB-Tooltip-listText">{{under18}}</h4>
+            </li>
+            <li class="CDB-Tooltip-listItem">
+                <h3 class="CDB-Tooltip-listTitle">refugeesbycountryoforigin_shareofunder18intotalrefugees</h3>
+                <h4 class="CDB-Tooltip-listText">{{refugeesbycountryoforigin_shareofunder18intotalrefugees}}</h4>
+            </li>
+        </ul>
+    </div> -->
 
     <script type="cartocss/html" id="child-styles">
 
-        #layer { polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7)); polygon-opacity: 1; line-width: 1; line-color: #ebebeb; line-opacity: 0.5; }
-
-        #layer::labels {
-  text-name: [iso_code];
-  text-face-name: 'DejaVu Sans Book';
-  text-size: 10;
-  text-fill: #051734;
-  text-label-position-tolerance: 0;
-  text-halo-radius: 1.6;
-  text-halo-fill: #eaecde;
-  text-dy: 0;
-  text-allow-overlap: false;
-  text-placement: point;
-  text-placement-type: dummy;
-}
+        #layer { polygon-fill: ramp([under18], cartocolor(BluYl), jenks(7)); polygon-opacity: 1; line-width: 1; line-color: #ebebeb; line-opacity: 0.5; } #layer::labels { text-name: [iso_code]; text-face-name: 'DejaVu Sans Book'; text-size: 10; text-fill: #051734;
+        text-label-position-tolerance: 0; text-halo-radius: 1.6; text-halo-fill: #eaecde; text-dy: 0; text-allow-overlap: false; text-placement: point; text-placement-type: dummy; }
 
     </script>
 
